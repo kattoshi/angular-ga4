@@ -105,6 +105,23 @@ export class NgxGa4Service {
     }
   }
   /**
+   * config (Group and route data)
+   * https://developers.google.com/tag-platform/gtagjs/routing
+   * @param mesureId menure id
+   * @param groupName group name
+   */
+  configGroups (mesureId : string , groupName? : string ) : void {
+    if (mesureId == null) {
+      this.gtag("config", this.measurementId);
+    }
+    else if (groupName == null) {
+      this.gtag("config", mesureId );
+    }
+    else {
+      this.gtag("config", mesureId , { "groups" : groupName});
+    }
+  }
+  /**
    * gtag("event" , ... )
    * @param eventName     string event name 
    * @param eventParams?  object event parameter

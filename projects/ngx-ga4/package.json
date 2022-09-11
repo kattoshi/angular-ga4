@@ -1,6 +1,6 @@
 {
-  "name": "ngx-ga4",
-  "version": "0.1.1",
+  "name": "@kattoshi/ngx-ga4",
+  "version": "0.1.0",
   "peerDependencies": {
     "@angular/common": "^14.0.0",
     "@angular/core": "^14.0.0"
@@ -15,6 +15,6 @@
   "bugs": {
     "url": "https://github.com/kattoshi/angular-ga4/issues"
   },
-  "homepage": "https://github.com/kattoshi/angular-ga4/#readme",
+  "homepage": "https://github.com/kattoshi/angular-ga4/tree/main/projects/ngx-ga4#readme",
   "license": "MIT"
 }

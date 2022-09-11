@@ -1,24 +1,105 @@
-# NgxGa4
+# ngx-ga4 (Google Analytics4)
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.0.
+Implementation for using Google Analytics 4 in angular14+ apps.
 
-## Code scaffolding
+# Notice
+I'm not good at English, so if there are any typos or mistranslations, please point them out.
 
-Run `ng generate component component-name --project ngx-ga4` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ngx-ga4`.
-> Note: Don't forget to add `--project ngx-ga4` or else it will be added to the default project in your `angular.json` file. 
+# How to use.
 
-## Build
+## Setup
+======================  
+Specify the measurement ID in forRoot().  
+If omitted, specification can be delayed until initaize$() described later.  
+The reason why you can specify it in initalize$() is that your application will read the measurement ID from the external storage (parameter file) after it starts.  
+```ts
+import { NgxGa4Module} from 'ngx-ga4';
 
-Run `ng build ngx-ga4` to build the project. The build artifacts will be stored in the `dist/` directory.
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    NgxGa4Module.forRoot({  /* measurementId : "G-xxxxxxxxxx" */ }),
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
 
-## Publishing
+======================  
+## NgxGa4Service  
+Call Interface Events.
+```ts
+export class AppComponent implements OnInit {
+  constructor (private _ga4 : NgxGa4Service){ }
+  async ngOnInit(): Promise<void> {
+    try {
+      await this._ga4.install$("mesurement id");
+      this._ga4.js();
+      this._ga4.config();
+    }
+    catch(ex)
+    {
+      throw new Error (`Script load exception=${ex}`);
+    }
+  }
+  onRaizeEvent() {
+    this._ga4.event("event_name" , 
+    { 
+      timestamp : new Date().toISOString()
+    });
+  }
+}
+```
+-----------------------------------------
+### 1. initalize$()
+Load the global site tag script into your project.
+```ts
+install$ (measurementId? : string): Promise<void>
+```
+Also, if your application installed the global site tag normally, do not call install$().  
+https://developers.google.com/tag-platform/gtagjs/install#add_the_tag_to_your_website  
+Specify the measurement ID with `NgxGa4Module.forRoot("measurementID");`.  
 
-After building your library with `ng build ngx-ga4`, go to the dist folder `cd dist/ngx-ga4` and run `npm publish`.
+====================
+### 2. js()
+```ts
+js (date : Date = new Date()) : void
+```
+Run the code below.  
+```ts
+call gtag("js" , date);
+```
 
-## Running unit tests
+====================
+### 3. config()
+```ts
+config (streamSetting? : NgxGa4StreamSetting) : void
+```
+see https://developers.google.com/tag-platform/gtagjs/reference#config  
 
-Run `ng test ngx-ga4` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Use a previously specified measurement ID.  
 
-## Further help
+====================
+### 4. configGroups()
+```ts
+configGroups (mesureId : string , groupName? : string ) : void
+```
+see https://developers.google.com/tag-platform/gtagjs/routing  
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+====================
+### 5. event()
+```ts
+event (eventName: string , eventParams?: object) : void
+```
+see https://developers.google.com/tag-platform/gtagjs/configure#send_data_with_event  
+
+====================
+### 6. set()
+```ts
+set ( config : NgxGa4GlobalSettingType, value : NgxGa4GlobalSettingValue) : void
+```
+https://developers.google.com/tag-platform/gtagjs/configure#send_data_on_every_event_with_set  
+
