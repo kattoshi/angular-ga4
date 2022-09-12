@@ -6,7 +6,10 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "lib-prod":"ng build ngx-ga4",
+    "lib-dev": "ng build ngx-ga4 --configuration development",
+    "publish":"npm publish --access=public .\\dist\\ngx-ga4"
   },
   "private": true,
   "dependencies": {

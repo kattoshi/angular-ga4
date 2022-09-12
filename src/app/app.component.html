@@ -1,6 +1,6 @@
-<button (click)="onClick()">おせ</button>
-<div gtagEvent draggable="true" trackOn="dragstart" action="product_dragged" [params]="{ event_label: 'Something cool just happened' }">
-    ああああああ
+<button (click)="onClick()">push!</button>
+<div gtagEvent draggable="true" trackOn="dragstart" action="product_dragged" [params]="{ event_label: 'Something draggable' }">
+    draggable
 </div>
 <div class="box1" gtagEvent trackOn="click" action="product_clicked" [params]="{ event_label: 'Something clicked' }">
     Click!
