@@ -4,6 +4,9 @@ import { NgxGa4Service } from './ngx-ga4.service';
 @Directive({
   selector: '[gtagEvent]'
 })
+/**
+ * Directive
+ */
 export class NgxGa4tagDirective implements AfterViewInit {
   /** HTML DOM Event */
   @Input() trackOn?: string;
@@ -17,7 +20,9 @@ export class NgxGa4tagDirective implements AfterViewInit {
     private renderer: Renderer2,
     private el: ElementRef
   ) {}
-
+  /**
+  *  AfterViewInit
+  */
   ngAfterViewInit() {
     try {
       if (!!this.trackOn && !!this.action) {

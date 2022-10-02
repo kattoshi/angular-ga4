@@ -10,7 +10,7 @@ import { NgxGa4Module} from 'ngx-ga4';
   ],
   imports: [
     BrowserModule,
-    NgxGa4Module.forRoot({  /* measurementId : "G-xxxxxxxxxx" */ }),
+    NgxGa4Module.forRoot({ measurementId : "G-xxxxxxxxxx" }),
   ],
   bootstrap: [AppComponent]
 })
