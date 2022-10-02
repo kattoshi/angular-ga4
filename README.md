@@ -1,9 +1,7 @@
 # AngularGa4
 
-## Hotto use
-See Readme.md in projects\ngz-ga4
-
-https://./projects/ngx-ga4/README.md
+## How to use
+See README.md in [projects\ngx-ga4](/projects/ngx-ga4/README.md)
 
 ## Build
 
