@@ -1,5 +1,9 @@
 # AngularGa4
 
+## Hotto use
+See Readme.md in projects\ngz-ga4
+
+https://./projects/ngx-ga4/README.md
 
 ## Build
 
